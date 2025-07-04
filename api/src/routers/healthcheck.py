@@ -6,4 +6,4 @@ router = APIRouter(prefix='/healt')
 
 @router.get(path='/healthz')
 def healt()-> JSONResponse:
-    return JSONResponse(status_code=200)
+    return JSONResponse(content={"msg": 'OK'}, status_code=200)
