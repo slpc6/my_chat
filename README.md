@@ -1,24 +1,80 @@
-# MyChat
+# MyChat - Chat y Videollamada Simplificado
 
-MyChat es una aplicación web de chat en tiempo real desarrollada con React (frontend) y FastAPI (backend), que permite a los usuarios registrarse, iniciar sesión, enviar mensajes y ver la lista de usuarios conectados. Los mensajes y usuarios se almacenan en una base de datos MongoDB.
+Aplicación web simplificada para chat y videollamadas en tiempo real usando WebRTC y WebSockets.
 
-## Funcionalidades principales
-- Registro y login de usuarios con validación y persistencia.
-- Chat general donde se muestra el nombre del usuario, mensaje y hora de envío.
-- Lista de usuarios conectados en tiempo real.
-- Persistencia de mensajes y usuarios conectados en MongoDB.
-- Sistema de logout que actualiza la lista de conectados.
+## Características
 
-## Estructura del proyecto
-- **/front**: Frontend en React + MUI.
-- **/api**: Backend en FastAPI, modelos y routers.
-- **/doc**: Documentación paginada del proyecto.
+- ✅ Ingreso simple con nombre de usuario
+- ✅ Videollamada en tiempo real (WebRTC)
+- ✅ Controles de cámara y micrófono
+- ✅ Chat en tiempo real
+- ✅ Sin persistencia (todo en memoria)
+- ✅ Interfaz simple y fácil de usar
 
-## Documentación
-La documentación detallada del proyecto está dividida en secciones dentro de la carpeta `/doc`:
-- [main.md](doc/main.md): Introducción y guía general.
-- (Agrega aquí más archivos de documentación según crezca el proyecto)
+## Estructura del Proyecto
 
----
+```
+my_chat/
+├── backend/          # Servidor Node.js con Socket.io
+│   ├── server.js     # Servidor principal
+│   └── package.json  # Dependencias del backend
+├── front/            # Frontend React + Material-UI
+│   └── src/
+│       └── components/
+│           └── pages/
+│               ├── Home.tsx          # Componente principal
+│               ├── JoinScreen.tsx    # Pantalla de entrada
+│               └── VideoCallPage.tsx # Videollamada y chat
+└── README.md
+```
 
-¿Quieres contribuir? Lee la documentación en `/doc` para más detalles sobre la arquitectura, endpoints y cómo extender el sistema.
+## Instalación y Uso
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+El servidor se ejecutará en `http://localhost:3001`
+
+### Frontend
+
+```bash
+cd front
+npm install
+npm run dev
+```
+
+La aplicación se abrirá en `http://localhost:5173` (o el puerto que Vite asigne)
+
+### Variables de Entorno (Opcional)
+
+Crea un archivo `.env` en la carpeta `front` para cambiar la URL del servidor:
+
+```
+VITE_SOCKET_URL=http://localhost:3001
+```
+
+## Cómo Usar
+
+1. Abre la aplicación en tu navegador
+2. Ingresa tu nombre
+3. Permite el acceso a cámara y micrófono cuando el navegador lo solicite
+4. ¡Listo! Ya puedes chatear y hacer videollamadas con otros usuarios conectados
+
+## Tecnologías Utilizadas
+
+- **Backend**: Node.js, Express, Socket.io
+- **Frontend**: React, TypeScript, Material-UI, Socket.io-client
+- **WebRTC**: Para videollamadas peer-to-peer
+- **WebSockets**: Para señalización y chat en tiempo real
+
+## Notas
+
+- No hay persistencia de datos (todo se pierde al recargar)
+- Los usuarios se conectan automáticamente cuando ingresan
+- La aplicación usa STUN servers públicos de Google para NAT traversal
+- Para producción, considera agregar TURN servers para mejor compatibilidad
